@@ -48,13 +48,13 @@ public:
                     left++;
                     right--;
                 }
+                else if (nums[i] + nums[left] + nums[right] < 0)
+                {
+                    left++;
+                }
                 else if (nums[i] + nums[left] + nums[right] > 0)
                 {
                     right--;
-                }
-                else
-                {
-                    left++;
                 }
             }
         }
