@@ -1,4 +1,4 @@
-#include<string>
+#include <string>
 using namespace std;
 /*
  * @lc app=leetcode.cn id=1047 lang=cpp
@@ -7,15 +7,17 @@ using namespace std;
  */
 
 // @lc code=start
-class Solution {
+class Solution
+{
 public:
-    string removeDuplicates(string S) {
+    string removeDuplicates(string S)
+    {
         string result;
-        for(char s : S)
+        for (int i = 0; i < S.size(); i++)
         {
-            if (result == "" || result.back() != s)
+            if (result.empty() || result.back() != S[i])
             {
-                result.push_back(s);
+                result.push_back(S[i]);
             }
             else
             {
@@ -26,4 +28,19 @@ public:
     }
 };
 // @lc code=end
-
+// string removeDuplicates(string S)
+// {
+//     string result;
+//     for (char s : S)
+//     {
+//         if (result == "" || result.back() != s)
+//         {
+//             result.push_back(s);
+//         }
+//         else
+//         {
+//             result.pop_back();
+//         }
+//     }
+//     return result;
+// }

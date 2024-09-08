@@ -9,6 +9,10 @@ using namespace std;
 // @lc code=start
 class MyQueue
 {
+    // 队列可以分为两个栈
+    // ↑------- ↓
+    // ←   |    ←
+    //  -------
 public:
     stack<int> in;
     stack<int> out;
@@ -17,14 +21,13 @@ public:
     {
     }
 
-    void push(int x)
+    void push(int val)
     {
-        in.push(x);
+        in.push(val);
     }
 
     int pop()
     {
-        int result = 0;
         if (out.empty())
         {
             while (!in.empty())
@@ -33,23 +36,21 @@ public:
                 in.pop();
             }
         }
-
-        result = out.top();
+        int result = out.top();
         out.pop();
         return result;
     }
 
     int peek()
     {
-        int result = pop();
-        out.push(result);
-        return result;
+        int top = pop();
+        out.push(top);
+        return top;
     }
-
+    
     bool empty()
     {
-        bool result = (in.empty() && out.empty());
-        return result;
+        return (in.empty() && out.empty());
     }
 };
 
@@ -62,3 +63,44 @@ public:
  * bool param_4 = obj->empty();
  */
 // @lc code=end
+// stack<int> in;
+// stack<int> out;
+
+// MyQueue()
+// {
+// }
+
+// void push(int x)
+// {
+//     in.push(x);
+// }
+
+// int pop()
+// {
+//     int result = 0;
+//     if (out.empty())
+//     {
+//         while (!in.empty())
+//         {
+//             out.push(in.top());
+//             in.pop();
+//         }
+//     }
+
+//     result = out.top();
+//     out.pop();
+//     return result;
+// }
+
+// int peek()
+// {
+//     int result = pop();
+//     out.push(result);
+//     return result;
+// }
+
+// bool empty()
+// {
+//     bool result = (in.empty() && out.empty());
+//     return result;
+// }
