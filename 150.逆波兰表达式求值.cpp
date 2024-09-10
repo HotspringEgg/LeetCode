@@ -16,27 +16,36 @@ public:
     int evalRPN(vector<string> &tokens)
     {
         int result = 0;
-        stack<long long> st;
+        stack<int> st;
         for (int i = 0; i < tokens.size(); i++)
         {
             if (tokens[i] == "+" || tokens[i] == "-" || tokens[i] == "*" || tokens[i] == "/")
             {
-                int num1 = st.top();
-                st.pop();
                 int num2 = st.top();
                 st.pop();
+                int num1 = st.top();
+                st.pop();
+                int num3 = 0;
                 if (tokens[i] == "+")
-                    st.push(num2 + num1);
-                if (tokens[i] == "-")
-                    st.push(num2 - num1);
-                if (tokens[i] == "*")
-                    st.push(num2 * num1);
-                if (tokens[i] == "/")
-                    st.push(num2 / num1);
-            }
-            else
+                {
+                    num3 = num1 + num2;
+                }
+                else if (tokens[i] == "-")
+                {
+                    num3 = num1 - num2;
+                }
+                else if (tokens[i] == "*")
+                {
+                    num3 = num1 * num2;
+                }
+                else if (tokens[i] == "/")
+                {
+                    num3 = num1 / num2;
+                }
+                st.push(num3);
+            }else
             {
-                st.push(stoll(tokens[i]));
+                st.push(stoi(tokens[i]));
             }
         }
         result = st.top();
@@ -45,3 +54,33 @@ public:
     }
 };
 // @lc code=end
+// int evalRPN(vector<string> &tokens)
+// {
+//     int result = 0;
+//     stack<long long> st;
+//     for (int i = 0; i < tokens.size(); i++)
+//     {
+//         if (tokens[i] == "+" || tokens[i] == "-" || tokens[i] == "*" || tokens[i] == "/")
+//         {
+//             int num1 = st.top();
+//             st.pop();
+//             int num2 = st.top();
+//             st.pop();
+//             if (tokens[i] == "+")
+//                 st.push(num2 + num1);
+//             if (tokens[i] == "-")
+//                 st.push(num2 - num1);
+//             if (tokens[i] == "*")
+//                 st.push(num2 * num1);
+//             if (tokens[i] == "/")
+//                 st.push(num2 / num1);
+//         }
+//         else
+//         {
+//             st.push(stoll(tokens[i]));
+//         }
+//     }
+//     result = st.top();
+//     st.pop();
+//     return result;
+// }
